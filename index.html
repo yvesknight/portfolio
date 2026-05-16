@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yves Iradukunda Gatabazi | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f8f9fa;
+      --surface: #ffffff;
+      --text: #2d3436;
+      --text-light: #636e72;
+      --accent: #0984e3;
+      --accent-hover: #0770c4;
+      --border: #dfe6e9;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- Nav --- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-light);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* --- Sections --- */
+    section { padding: 100px 0; }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+
+    /* --- Hero --- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+    }
+
+    .hero-content { max-width: 720px; }
+
+    .hero-greeting {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 580px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(9,132,227,0.3);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-quick-info {
+      display: flex;
+      gap: 24px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-quick-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .hero-quick-info i { color: var(--accent); width: 16px; }
+
+    /* --- Education --- */
+    .edu-grid { display: flex; flex-direction: column; gap: 24px; }
+
+    .edu-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .edu-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+    .edu-card .edu-meta {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .edu-card .edu-meta i { margin-right: 6px; color: var(--accent); }
+    .edu-card p { font-size: 0.95rem; color: var(--text-light); }
+
+    /* --- Skills --- */
+    .skills-category { margin-bottom: 36px; }
+    .skills-category:last-child { margin-bottom: 0; }
+
+    .skills-category h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: default;
+      transition: all var(--transition);
+      box-shadow: var(--shadow);
+    }
+    .skill-tag i { color: var(--accent); }
+    .skill-tag:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(9,132,227,0.15);
+    }
+
+    .skill-tag.soft { border-color: #ffeaa7; }
+    .skill-tag.soft:hover { border-color: #fdcb6e; }
+    .skill-tag.soft i { color: #e17055; }
+
+    /* --- Projects --- */
+    .project-grid { display: grid; gap: 28px; }
+
+    .project-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .project-card .project-sub {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 16px;
+    }
+    .project-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .project-links a i { margin-right: 4px; }
+
+    /* --- Contact --- */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--text-light);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .contact-item i {
+      width: 20px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.15rem;
+      transition: all var(--transition);
+    }
+    .social-links a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+    footer i { color: var(--accent); }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        flex-direction: column;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border);
+        gap: 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-quick-info { flex-direction: column; gap: 12px; }
+
+      section { padding: 64px 0; }
+      .section-title { margin-bottom: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+      .container { padding: 0 16px; }
+    }
+
+    /* --- Animations --- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <span class="logo">Y.I.G.</span>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">Yves Iradukunda Gatabazi</h1>
+        <p class="hero-title">Software Engineering Student &amp; Aspiring Developer</p>
+        <p class="hero-bio">
+          Motivated Software Engineering student with a strong foundation in programming,
+          problem-solving, and digital technologies. Experienced in AI-related projects and
+          coding training programs. Passionate about building efficient, scalable solutions
+          and continuously improving technical skills in modern software development.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Get in Touch
+          </a>
+          <a href="#projects" class="btn btn-outline">
+            <i class="fas fa-code"></i> View Projects
+          </a>
+        </div>
+        <div class="hero-quick-info">
+          <span><i class="fas fa-phone-alt"></i> +250 786 177 817</span>
+          <span><i class="fas fa-envelope"></i> yveswizy@gmail.com</span>
+          <span><i class="fas fa-map-marker-alt"></i> Rwanda</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="edu-grid">
+        <div class="edu-card fade-up">
+          <h3>Bachelor of Software Engineering</h3>
+          <p class="edu-meta"><i class="fas fa-university"></i> African University of Central Africa (AUCA) &middot; 2024 – Present</p>
+          <p>Currently pursuing a degree in Software Engineering with a focus on modern development practices, algorithms, and system design.</p>
+        </div>
+        <div class="edu-card fade-up">
+          <h3>High School Diploma (MPG)</h3>
+          <p class="edu-meta"><i class="fas fa-school"></i> College Adventiste de Gitwe (CAG) &middot; 2020 – 2022</p>
+          <p>Mathematics, Physics, Geography (MPG) track, building a strong analytical and scientific foundation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skills-category">
+        <h3>Programming &amp; Tech</h3>
+        <div class="skills-tags">
+          <span class="skill-tag"><i class="fas fa-code"></i> Software Development</span>
+          <span class="skill-tag"><i class="fas fa-robot"></i> AI Concepts</span>
+          <span class="skill-tag"><i class="fas fa-laptop-code"></i> Basic Programming</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Tools &amp; Computer Skills</h3>
+        <div class="skills-tags">
+          <span class="skill-tag"><i class="fab fa-microsoft"></i> Microsoft Office</span>
+          <span class="skill-tag"><i class="fas fa-table"></i> Excel / Google Sheets</span>
+          <span class="skill-tag"><i class="fas fa-desktop"></i> General Computing</span>
+          <span class="skill-tag"><i class="fas fa-globe"></i> Internet &amp; Email</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Languages</h3>
+        <div class="skills-tags">
+          <span class="skill-tag"><i class="fas fa-language"></i> Kinyarwanda — Native</span>
+          <span class="skill-tag"><i class="fas fa-language"></i> English — Fluent</span>
+          <span class="skill-tag"><i class="fas fa-language"></i> French — Intermediate</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Soft Skills</h3>
+        <div class="skills-tags">
+          <span class="skill-tag soft"><i class="fas fa-microphone-alt"></i> Public Speaking</span>
+          <span class="skill-tag soft"><i class="fas fa-comments"></i> Communication</span>
+          <span class="skill-tag soft"><i class="fas fa-users"></i> Teamwork</span>
+          <span class="skill-tag soft"><i class="fas fa-lightbulb"></i> Willingness to Learn</span>
+          <span class="skill-tag soft"><i class="fas fa-user-check"></i> Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects &amp; Training</h2>
+      <div class="project-grid">
+        <div class="project-card fade-up">
+          <h3>AI Training Projects</h3>
+          <p class="project-sub">Digital Transformation Center (DTC) — Google Sponsored</p>
+          <p>
+            Participated in hands-on AI learning and project-based training through the
+            Digital Transformation Center. Explored machine learning fundamentals, data
+            preprocessing, and real-world AI application development.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/yvesknight"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <h3>Coding Training Program</h3>
+          <p class="project-sub">Rwanda Coding Academy</p>
+          <p>
+            Gained foundational programming skills and practical exposure to software
+            development concepts. Covered topics including data structures, algorithms,
+            and introductory web development through hands-on exercises and projects.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/yvesknight"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Let's work together</h3>
+          <p>
+            I'm always open to discussing new projects, opportunities, or collaborations.
+            Feel free to reach out!
+          </p>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>yveswizy@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+250 786 177 817</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Rwanda</span>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/yvesgatabazi/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/yvesknight" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Yves Iradukunda Gatabazi. Built with <i class="fas fa-heart"></i>.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = toggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Close nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const icon = toggle.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+      });
+    });
+
+    // Scroll-triggered fade-up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
